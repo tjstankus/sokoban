@@ -9,20 +9,11 @@ module Sokoban
     end
 
     def move_left
-      from_cell = person_cell
-      to_cell = cell_to_left(from_cell)
-      to_elements = Array.new(to_cell.elements)
-      to_cell.elements.replace(from_cell.elements)
-      from_cell.elements.replace(to_elements)
+      move(:left)
     end
 
     def move_right
       move(:right)
-      # from_cell = person_cell
-      # to_cell = cell_to_right(from_cell)
-      # to_elements = Array.new(to_cell.elements)
-      # to_cell.elements.replace(from_cell.elements)
-      # from_cell.elements.replace(to_elements)
     end
 
     def to_s
@@ -54,6 +45,7 @@ module Sokoban
     private
 
     def move(direction)
+      # TODO: Make more efficient?
       from_cell = person_cell
       to_cell = self.send("cell_to_#{direction}", from_cell)
       to_elements = Array.new(to_cell.elements)
@@ -73,6 +65,5 @@ module Sokoban
         end
       end
     end
-
   end
 end
