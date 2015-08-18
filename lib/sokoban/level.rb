@@ -16,10 +16,21 @@ module Sokoban
       move(:right)
     end
 
+    def move_up
+      move(:up)
+    end
+
+    def move_down
+      move(:down)
+    end
+
     def to_s
       String.new.tap do |s|
         grid.each_with_index do |line, x|
           line.each { |cell| s << cell.elements.first.to_s }
+          s << "\n"
+          line.each_with_index do |cell, y|
+          end
         end
       end
     end
@@ -40,6 +51,17 @@ module Sokoban
     def cell_to_right(cell)
       x, y = cell.xy
       grid[x][y+1]
+    end
+
+    # TODO: cell_to_up sounds stupid. Rename methods east, west, north, south.
+    def cell_to_up(cell)
+      x, y = cell.xy
+      grid[x-1][y]
+    end
+
+    def cell_to_down(cell)
+      x, y = cell.xy
+      grid[x+1][y]
     end
 
     private
