@@ -8,22 +8,6 @@ module Sokoban
       @grid = init_grid
     end
 
-    def move_left
-      move(:left)
-    end
-
-    def move_right
-      move(:right)
-    end
-
-    def move_up
-      move(:up)
-    end
-
-    def move_down
-      move(:down)
-    end
-
     def to_s
       String.new.tap do |s|
         grid.each_with_index do |line, x|
@@ -43,29 +27,6 @@ module Sokoban
       end
     end
 
-    def cell_to_left(cell)
-      x, y = cell.xy
-      grid[x][y-1]
-    end
-
-    def cell_to_right(cell)
-      x, y = cell.xy
-      grid[x][y+1]
-    end
-
-    # TODO: cell_to_up sounds stupid. Rename methods east, west, north, south.
-    def cell_to_up(cell)
-      x, y = cell.xy
-      grid[x-1][y]
-    end
-
-    def cell_to_down(cell)
-      x, y = cell.xy
-      grid[x+1][y]
-    end
-
-    private
-
     def move(direction)
       # TODO: Make more efficient?
       from_cell = person_cell
@@ -74,6 +35,28 @@ module Sokoban
       to_cell.elements.replace(from_cell.elements)
       from_cell.elements.replace(to_elements)
     end
+
+    def cell_to_west(cell)
+      x, y = cell.xy
+      grid[x][y-1]
+    end
+
+    def cell_to_east(cell)
+      x, y = cell.xy
+      grid[x][y+1]
+    end
+
+    def cell_to_north(cell)
+      x, y = cell.xy
+      grid[x-1][y]
+    end
+
+    def cell_to_south(cell)
+      x, y = cell.xy
+      grid[x+1][y]
+    end
+
+    private
 
     def init_grid
       Array.new.tap do |grid|

@@ -24,10 +24,10 @@ module Sokoban
         end
       end
 
-      describe "#cell_to_left" do
+      describe "#cell_to_west" do
         it "returns correct cell" do
           person_cell = level.person_cell
-          expect(level.cell_to_left(person_cell).xy).to eq([0, 0])
+          expect(level.cell_to_west(person_cell).xy).to eq([0, 0])
         end
       end
     end

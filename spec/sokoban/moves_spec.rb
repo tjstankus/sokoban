@@ -2,27 +2,27 @@ require "spec_helper"
 
 module Sokoban
   RSpec.describe "Person" do
-    it "moves left into open space" do
+    it "moves west into open space" do
       level = single_line_level
-      level.move_left
+      level.move(:west)
       expect(level.to_s).to eq("@  \n")
     end
 
-    it "moves right into open space" do
+    it "moves east into open space" do
       level = single_line_level
-      level.move_right
+      level.move(:east)
       expect(level.to_s).to eq("  @\n")
     end
 
     it "moves up into open space" do
       level = multi_line_level
-      level.move_up
+      level.move(:north)
       expect(level.to_s).to eq(" @ \n   \n   \n")
     end
 
     it "moves down into open space" do
       level = multi_line_level
-      level.move_down
+      level.move(:south)
       expect(level.to_s).to eq("   \n   \n @ \n")
     end
 
